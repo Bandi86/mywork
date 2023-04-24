@@ -1,4 +1,5 @@
 ## Started With Pizza Fuego Pet Project 2023.04.24.
+- this is a non-real restaurant pizzeria to learn and practice getting to know the technology
 
 ## Version 0.1
 
