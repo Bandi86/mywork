@@ -1,0 +1,219 @@
+a {
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    height: 4em;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    background-color: black;
+    color: orange;
+    
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+
+.nav-center {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.nav-center a {
+    color: white;    
+    font-size: 1.2em;
+}
+.nav-center a:hover {
+    color: orange;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.nav-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    justify-content: space-between;    
+    margin-right: 2em;
+}
+
+.phonespan{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    font-weight: bold;
+    margin-left: 2em;
+    font-size: 1.5em;
+    color: orange;
+}
+
+.loginicon {
+font-size: 2em;
+}
+
+.spanlogin  {  
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25% 10%;
+    padding: 0.5em;
+    width: 7em;
+    gap: 0.5em;
+  }
+
+.spanlogin:hover {
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    border: orange 3px solid;
+    cursor: pointer;  
+  }
+
+.textlogin  {
+    font-size: 1.2em;
+    color: black;    
+}
+
+.searchspan {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.searchicon {
+    font-size: 1.7em;
+    color: white;
+}
+.searchicon:hover {
+    color: orange;
+    cursor: pointer;}
+
+.searchinput {
+    border: none;
+    border-radius: 10px;
+    padding: 0.5em;
+    width: 15em;
+    font-size: 1em;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+}
+
+.searchtoogle {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+.cartdiv {
+    display: flex;
+    align-items: center;
+    gap: 2em;   
+    
+}
+
+.carticon {
+    font-size: 2em;
+    color: white;
+    position : relative;
+}
+
+.carticon:hover{
+    color: orange;
+    cursor: pointer;
+}
+
+.cartnumber {
+    position: absolute;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 50px;
+    background-color: red;
+    color:white;
+    width: 1.5em;
+    margin-left: 1.5em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+/* Mobile version */
+@media screen and (max-width: 1600px) {
+    nav {
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+    }    
+}
+
+
+
+
+
+@media screen and (max-width: 576px) {
+    nav {
+        display:flex;
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        font-size: 1em;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;        
+        
+    }
+    .nav-left {
+        display: flex;
+        flex-direction: row;       
+        margin: 0;        
+    }
+    .phonespan {
+        margin-right: 2.5em;
+    }
+    .phonenumber {
+        margin-left: -50px;
+        margin-right: 20px;
+        font-size: 18px;
+    }    
+    .nav-center {
+        font-size: 15px;       
+    }
+    .nav-right {
+        display:flex;
+        flex-direction: column;
+    }
+    .cartdiv {
+        display: flex;
+        flex-direction: row;
+        gap: 3em;
+        margin-right: 2em;
+            
+    }
+    .spanlogin{
+        width: 12em;        
+        justify-content: center;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+    main {
+        margin-top: 2em;
+    }
+    .bemutatkozas {        
+        margin: 0;
+    }
+    }
