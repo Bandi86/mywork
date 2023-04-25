@@ -1,33 +1,44 @@
 import React from "react";
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { sale } from './SaleData';
 import { v4 as uuidv4 } from 'uuid';
 import { CartContext } from './CartContext';
 import { useContext } from 'react';
+import ProductCrud from './../services/ProductCrud';
 
 
 export default function BootstrapCarouselComponent () {
 
   const { cart, setCart } = useContext(CartContext);
+  const [carouselProducts, setCarouselProducts] = React.useState([]);
 
-  function addProductToCart(sale) { 
-    
-    const existingItemIndex = cart.findIndex((item) => item.id === sale.id);
-    
+  const addProductToCart = async (product) => { 
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
     if (existingItemIndex >= 0) {
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].amount++;
       setCart(updatedCart);
     } else {
-      const item = {...sale, amount: 1};
+      const item = {...product, amount: 1};
       setCart([...cart, item]);
     } 
-      
-    }
+  }      
+    
 
-
-
+    const getProducts = async () => {
+      try {
+      await ProductCrud.getProducts()           
+        .then(res => res.slice(0, 3))
+        .then(res => setCarouselProducts(res));         
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    React.useEffect(() => {
+      getProducts();
+    }, []);
+    
  return(    
       <div>
         <div className='container-fluid'>
@@ -39,12 +50,12 @@ export default function BootstrapCarouselComponent () {
           <div className="row">
             <div className="col-12">
               <Carousel>
-                {sale.map(product => (
+                {carouselProducts?.map(product => (
                   <Carousel.Item key={uuidv4()}>
                     <img
                       className="d-block mx-auto mb-3"
-                      src={product.image}
-                      alt={product.name}
+                      src={!product.image ? "https://via.placeholder.com/300x200" : product.image}
+                      alt=""
                       style={{ height: '20em', width: '30em' }}
                     />
                     <div className="c-container">
