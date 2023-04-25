@@ -14,7 +14,7 @@ code {
 
 html, body, #root {
   height: 100%;
-  background: rgb(131,58,180);
+  background: rgb(131,58,180); 
   background: linear-gradient(45deg, #DAA520, #A0522D, #8B4513);  
-  color: #FFDAB9; 
+  color: #FFDAB9;  
 }
