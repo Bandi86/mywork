@@ -10,10 +10,19 @@ export default function Search(props) {
 
   /* Kosárhoz adás: illetve a találati lista és a kereső értékeinek lenullázása */
   function addProductToCart(product) {
-    setCart([...cart, product]);
+
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+  
+    if (existingItemIndex >= 0) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].amount++;
+      setCart(updatedCart);
+    } else {
+      const item = {...product, amount: 1};
+      setCart([...cart, item]);
+    }
     setSearchTerm([]);
     setSearchResults([]);
-    
   }
 
   const [searchTerm, setSearchTerm] = useState('');

@@ -2,17 +2,31 @@ import React from "react";
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { sale } from './SaleData';
-import { useContext } from 'react';
-import { CartContext } from './CartContext';
 import { v4 as uuidv4 } from 'uuid';
+import { CartContext } from './CartContext';
+import { useContext } from 'react';
+
 
 export default function BootstrapCarouselComponent () {
 
-  const {cart, setCart} = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext);
 
-  function addToCart(product) {
-    setCart([...cart, product]);    
-  }
+  function addProductToCart(sale) { 
+    
+    const existingItemIndex = cart.findIndex((item) => item.id === sale.id);
+    
+    if (existingItemIndex >= 0) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].amount++;
+      setCart(updatedCart);
+    } else {
+      const item = {...sale, amount: 1};
+      setCart([...cart, item]);
+    } 
+      
+    }
+
+
 
  return(    
       <div>
@@ -37,7 +51,7 @@ export default function BootstrapCarouselComponent () {
                       <h3 className="h3-c">{product.name}</h3>
                       <p className="p-c-d">{product.desc}</p>
                       <p className="p-c-p">{product.price} Ft</p>
-                      <button onClick={() => addToCart(product)} className="buy">Kosárba</button>
+                      <button onClick={() => addProductToCart(product)} className="buy">Kosárba</button>
                       </div>
                     <Carousel.Caption className="text-center">
                     </Carousel.Caption>
