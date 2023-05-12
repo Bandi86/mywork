@@ -1,0 +1,102 @@
+{
+    "products": [
+        {        
+            "name": "Pizza Fuego",
+            "id": 1,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Hawaiana",
+            "id": 2,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, jamón, piña y cebolla",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/hawaiana.jpg" 
+        },
+        {
+            "name": "Pizza Vegetariana",
+            "id": 3,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, champiñones, cebolla, pimiento rojo y aceitunas",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/vegetariana.jpg" 
+        },
+        {
+            "name": "Pizza 4 Quesos",
+            "id": 4,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, queso parmesano, queso cheddar y queso azul",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/4quesos.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 5,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 6,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 7,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg"
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 8,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 9,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 10,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 11,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 12,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg" 
+        },
+        {
+            "name": "Pizza Pepperoni",
+            "id": 13,
+            "price": 2500,
+            "description": "Pizza con salsa de tomate, queso mozzarella, salami, aceitunas, cebolla y pimiento rojo",
+            "image": "https://www.pizzahut.com.pe/images/pizzas/pepperoni.jpg"
+        }
+    ]
+}
+    
+
+    
+        
+      
+        
+        

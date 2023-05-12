@@ -4,7 +4,7 @@ export const products = [
         id: 1,
         price: 2500,
         image: "https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=360",
-        desc: "szalámi, sonka, paradicsom, mozzarella"
+        desc: "salami, ham, tomatoes, mozzarella"
     },
     {
         name: "Piedone",

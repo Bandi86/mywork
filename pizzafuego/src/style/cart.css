@@ -8,7 +8,7 @@
 	margin-top: 2em;
 }
 
-.cart-items{
+.cart-items {
 	height: 100%;
 	align-items: center;
 	text-align: center;
@@ -17,7 +17,6 @@
 	margin-left: 20em;
 	margin-right: 20em;
 	gap: 1em;
-	
 }
 
 h4 span {
@@ -51,12 +50,12 @@ h4 span {
 .cart-total {
 	display: flex;
 	flex-direction: column;
-	align-items: center;	
+	align-items: center;
 	margin-top: 2em;
 	color: black;
 	gap: 2em;
 	font-weight: bold;
-	margin-bottom: 2em;		
+	margin-bottom: 2em;
 }
 
 .cart-item-amount-btn {
@@ -68,7 +67,6 @@ h4 span {
 	cursor: pointer;
 	color: black;
 }
-
 
 .cart-total-btn:hover {
 	background-color: purple;

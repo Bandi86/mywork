@@ -7,6 +7,7 @@ Created by Create React App
 
  ## Installation Needed
  - react icons
+ - react bootstrap
  - react-router-dom
  - uuid
 
