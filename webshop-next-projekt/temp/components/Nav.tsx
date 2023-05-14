@@ -45,10 +45,10 @@ const Nav = () => {
 							<SlLogin className='text-xl' />
 							Login
 						</span>
+					</div>
 					<Link href='/admin'>
 						<span>Admin</span>
 					</Link>
-					</div>
 				</div>
 			</nav>
 		</header>
