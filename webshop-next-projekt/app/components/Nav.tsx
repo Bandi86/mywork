@@ -9,7 +9,7 @@ import { FcSearch } from 'react-icons/fc';
 const Nav = () => {
 	return (
 		<header>
-			<nav className='flex justify-between items-center w-full  bg-[#459c98] text-[#121621] font-bold text-wh-10 px-10 py-4 border-b border-indigo-300'>
+			<nav className='flex justify-between items-center w-full  bg-fffff text-[#121621] font-bold text-wh-10 px-10 py-4 border-b border-indigo-300'>
 				<div className='w-full hidden sm:flex sm:justify-between sm:gap-9 lg:justify-between'>
 					<div className='flex flex-row gap-20 justify-center items-center'>
 						<span>Logo here</span>
@@ -34,7 +34,7 @@ const Nav = () => {
 							Cart
 						</span>
 						<span className='flex flex-row items-center gap-2'>
-							<MdFavorite className='text-2xl' />
+							<MdFavorite className='text-2xl text-rose-700' />
 							Favorites
 						</span>
 						<span className='flex flex-row items-center gap-2'>
@@ -45,9 +45,9 @@ const Nav = () => {
 							<SlLogin className='text-xl' />
 							Login
 						</span>
-					<Link href='/admin'>
-						<span>Admin</span>
-					</Link>
+						<Link href='/admin'>
+							<span>Admin</span>
+						</Link>
 					</div>
 				</div>
 			</nav>
