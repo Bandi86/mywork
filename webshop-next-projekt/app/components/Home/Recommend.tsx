@@ -10,9 +10,9 @@ const Recommend = () => {
 	const randomCategories = sampleSize(categoriesData, 4);
 
 	return (
-		<div className='mt-6 ml-6 h-60 bg-ffffff p-4'>
+		<div className='mt-6 h-60 bg-ffffff p-4'>
 			<div className='flex flex-row items-center gap-2 text-xl'>
-				<MdRecommend />
+				<MdRecommend className='text-2xl' />
 				Recommended
 			</div>
 			<div className='grid grid-cols-4 grid-rows-2 gap-4 mt-2 w-full'>

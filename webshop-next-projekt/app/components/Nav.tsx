@@ -8,10 +8,10 @@ import { FcSearch } from 'react-icons/fc';
 
 const Nav = () => {
 	return (
-		<header>
-			<nav className='flex justify-between items-center w-full  bg-fffff text-[#121621] font-bold text-wh-10 px-10 py-4 border-b border-indigo-300'>
+		<header className='h-18 ml-[15rem] mr-[15rem]'>
+			<nav className='flex justify-between items-center w-full bg-fffff text-[#121621] font-bold text-wh-10 py-4 border-b border-indigo-300'>
 				<div className='w-full hidden sm:flex sm:justify-between sm:gap-9 lg:justify-between'>
-					<div className='flex flex-row gap-20 justify-center items-center'>
+					<div className='flex flex-row gap-10 justify-center items-center'>
 						<span>Logo here</span>
 						<Link href='/'>
 							<span>
