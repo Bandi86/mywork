@@ -4,17 +4,15 @@ import { sampleSize } from 'lodash';
 import { MdOutlineFavorite } from 'react-icons/md';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-const Recommend = () => {
-	// Véletlenszerűen válassz ki négy elemet a categoriesData tömbből
-	const randomCategories = sampleSize(categoriesData, 4);
-
+const Sale = () => {
+    const randomCategories = sampleSize(categoriesData, 4);
 	return (
 		<div className='mt-6 bg-ffffff'>
 			<div className='flex flex-row items-center gap-2 text-xl'>
 				<MdRecommend className='text-2xl' />
-				Recommended
+				On Sale
 			</div>
-			<div className='grid grid-cols-4 grid-rows-2 gap-4 mt-2 w-full'>
+			<div className='grid grid-cols-4 grid-rows-2 gap-4 mt-2 mb-2 w-full'>
 				{randomCategories.map((category) => (
 					<div
 						key={category.title}
@@ -47,4 +45,4 @@ const Recommend = () => {
 	);
 };
 
-export default Recommend;
+export default Sale;

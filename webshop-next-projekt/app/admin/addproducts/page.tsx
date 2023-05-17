@@ -1,8 +1,8 @@
 
 const page = () => {
 	return (
-		<div className='flex flex-col w-full mt-4 text-center items-center gap-10 bg-slate-200'>
-			<h1 className='text-3xl font-bold text-center'>Add Products</h1>
+		<div className='flex flex-col w-full text-center items-center gap-10 bg-slate-200'>
+			<h1 className='text-3xl font-bold text-center mt-4'>Add Products</h1>
 			<div className='flex flex-col w-full mt-4 text-center items-center gap-10'>
 				<form className='flex flex-col w-full mt-4 text-center items-center gap-6'>
 					<label className='text-lg text-black text-center'>Product Name</label>
@@ -48,8 +48,8 @@ const page = () => {
 						placeholder='Product Stock'
 					/>
 					<button
-            type='submit'
-            className='w-1/6 p-2 mt-2 text-lg text-white bg-black rounded-md'
+						type='submit'
+						className='w-1/6 p-2 mt-2 text-lg text-white bg-black rounded-md'
 					>
 						Add Product
 					</button>

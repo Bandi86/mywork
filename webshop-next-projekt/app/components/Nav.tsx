@@ -9,7 +9,7 @@ import { FcSearch } from 'react-icons/fc';
 const Nav = () => {
 	return (
 		<header className='h-18 ml-[15rem] mr-[15rem]'>
-			<nav className='flex justify-between items-center w-full bg-fffff text-[#121621] font-bold text-wh-10 py-4 border-b border-indigo-300'>
+			<nav className='flex justify-between items-center w-full bg-fffff text-[#121621] font-bold text-wh-10 py-4 border-b border-slate-200'>
 				<div className='w-full hidden sm:flex sm:justify-between sm:gap-9 lg:justify-between'>
 					<div className='flex flex-row gap-10 justify-center items-center'>
 						<span>Logo here</span>
@@ -19,13 +19,13 @@ const Nav = () => {
 							</span>
 						</Link>
 					</div>
-					<div className='flex flex-row gap-2 justify-center items-center'>
+					<div className='flex flex-row gap-8 justify-center items-center'>
 						<FcSearch className='text-4xl' />
 						<input
 							type='text'
 							placeholder='Search for anything...'
 							name='search'
-							className='placeholder:italic placeholder:text-slate-400 block bg-white w-[30rem] border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
+							className='placeholder:italic placeholder:text-slate-400 block bg-white w-[20rem] border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm'
 						/>
 					</div>
 					<div className='flex flex-row gap-20 justify-center items-center'>
