@@ -1,7 +1,13 @@
+import Banner from "./components/Banner";
+
+
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-slate-200">Home</h1>
+    <main className="bg-lightBlue">
+      <div className="max-w-contentContainer mx-auto bg-white">
+      <Banner />
+      </div>
+      
     </main>
   )
 }
