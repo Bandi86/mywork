@@ -1,7 +1,7 @@
-import { CgProfile } from 'react-icons/cg';
-import { RiShoppingCart2Line } from 'react-icons/ri';
 import { MdFavorite } from 'react-icons/md';
+import { RiShoppingCart2Line } from 'react-icons/ri';
 import Link from 'next/link';
+import ProfileMenu from './ProfileMenu';
 
 const Navbar = () => {
 	return (
@@ -47,14 +47,12 @@ const Navbar = () => {
 					</div>
 				</div>
 				<div className='flex items-center gap-10 pr-4 text-3xl text-black hover:cursor-pointer'>
+					<ProfileMenu />					
 					<span>
-						<CgProfile className='hover:scale-125' />
+						<MdFavorite className='hover:scale-125 text-red-600' />
 					</span>
 					<span>
 						<RiShoppingCart2Line className='hover:scale-125' />
-					</span>
-					<span>
-						<MdFavorite className='hover:scale-125' />
 					</span>
 				</div>
 			</div>
