@@ -14,14 +14,18 @@ type Product = {
   stock: number;
 };
 
+const page = 1; // Az aktuális oldal száma
+const pageSize = 10; // Az oldalonkénti elemek száma
+
 const Page = () => {
   const [products, setProducts] = useState([] as Product[]);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/products");
+      const response = await fetch(`http://localhost:8000/api/products?page=${page}&pageSize=${pageSize}`);
       const data = await response.json();
       setProducts(data);
+      return data;
     } catch (error) {
       console.error("Fetch error:", error);
     }
@@ -36,10 +40,10 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col w-full text-center items-center gap-10 bg-slate-200">
+    <div className="flex flex-col w-full min-h-screen text-center items-center gap-10 bg-slate-200">
       <h1 className="text-3xl font-bold text-center mt-4">Manage Products</h1>
-      <div>
-        <table className="table-auto border-b-2 border-slate-800 mb-4">
+      <div className=" min-h-screen">
+        <table className="table-auto h-auto border-b-2 border-slate-800 mb-4">
           <thead className="border-y-2 border-black">
             <tr>
               <th className="px-4 py-2">Product ID</th>

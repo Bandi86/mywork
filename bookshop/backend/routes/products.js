@@ -1,6 +1,7 @@
 import sqlite3 from "sqlite3";
 import express from "express";
 import crypto from "crypto";
+import products_pagination from "../utils/pagination.js";
 
 sqlite3.verbose();
 
@@ -119,6 +120,20 @@ router.delete("/products/:id", (req, res) => {
     }
   });
 });
+
+
+// GET products
+router.get('/products', (req, res) => {
+  // Oldalszám és oldalonkénti elemek számának meghatározása
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 10;
+
+  // Adatok lekérdezése és válasz küldése
+  const items = products_pagination(page, pageSize); // products_pagination függvény importálása az adatbáziskezelő fájlból
+  res.json(items);
+});
+
+
 
 // Exportáljuk a router objektumot
 export default router;
