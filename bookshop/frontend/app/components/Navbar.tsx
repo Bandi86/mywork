@@ -5,7 +5,7 @@ import ProfileMenu from './ProfileMenu';
 
 const Navbar = () => {
 	return (
-		<div className='h-18 bg-[#f4f3ec]'>
+		<div className='bg-[#f4f3ec]'>
 			<div className='flex items-center w-full font-bold pl-4 text-wh-10 py-4 gap-4 justify-between'>
 				<span>
 					<Link href='/'>

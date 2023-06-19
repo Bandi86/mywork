@@ -5,6 +5,14 @@ const app = express();
 const port = 8000;
 
 
+// CORS engedélyezése
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // vagy '*' az összes eredeti erőforrás engedélyezéséhez
+  res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type"); // Engedélyezett fejlécek
+  next();
+});
+
 app.use(express.json());
 
 app.get('/', (req, res) => {

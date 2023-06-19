@@ -22,7 +22,7 @@ const page = () => {
 					<label className='text-lg text-black text-center'>Product Price</label>
 					<input
 						className='text-lg text-black text-left pl-2 border-2 border-black placeholder:gray-400 rounded-md'
-						type='text'
+						type='number'
 						name='productprice'
 						placeholder='Product Price'
 					/>
@@ -43,13 +43,13 @@ const page = () => {
 					<label className='text-lg text-black text-center'>Product Stock</label>
 					<input
 						className='text-lg text-black text-left pl-2 border-2 border-black placeholder:gray-400 rounded-md'
-						type='text'
+						type='number'
 						name='productstock'
 						placeholder='Product Stock'
 					/>
 					<button
 						type='submit'
-						className='w-1/6 p-2 mt-2 text-lg text-white bg-black rounded-md'
+						className='w-1/6 p-2 mt-2 mb-10 text-lg text-white bg-black rounded-md'
 					>
 						Add Product
 					</button>

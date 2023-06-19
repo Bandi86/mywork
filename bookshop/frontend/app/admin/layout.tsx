@@ -1,9 +1,9 @@
-import Sidebar from './Sidebar';
+import AdminMenu from './AdminMenu';
 
 const adminLayout = ({ children } : { children: React.ReactNode }) => {
   return (
-		<div className='flex flex-row h-full'>
-			<Sidebar />
+		<div className='flex flex-col h-full'>
+			<AdminMenu />
 			{children}
 		</div>
 	);
