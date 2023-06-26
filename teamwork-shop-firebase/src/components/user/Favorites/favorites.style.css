@@ -1,0 +1,87 @@
+.favorites-container {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.favorites-product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #19978b;
+    border-radius: 1rem;
+}
+
+.favorites-product-image {
+    width: 100%;
+    padding-top: 2rem;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.favorites-product-container:hover {
+    transform: scale(1.1);
+}
+
+.favorites-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    height: 100%;
+}
+
+.favorites-bottom {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+#favorite-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #19978b;
+}
+
+.favorites-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+#remove-favorites-icon {
+    color: red;
+    cursor: pointer;
+    font-size: x-large;
+    transition: transform 0.3s ease;
+}
+
+#remove-favorites-icon:hover {
+    transform: scale(1.2);
+}
+
+.favorites-addtocart {
+    font-size: x-large;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.favorites-addtocart:hover {
+    transform: scale(1.2);
+}
+
+#favorites-h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}

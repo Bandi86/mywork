@@ -1,0 +1,155 @@
+.admin {
+	color: black;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.admin-render {
+	display: flex;
+	gap: 2rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.admin-filter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+	gap: 2rem;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	border-collapse: collapse;
+	width: 100%;
+	justify-content: center;
+	text-align: center;
+	font-size: 1.1rem;
+	align-items: center;
+}
+.table a {
+	color: black;
+}
+
+.table-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	width: 50%;
+	gap: 1rem;
+}
+
+
+.table-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	width: 50%;
+	gap: 1rem;
+}
+
+.table-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: whitesmoke;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	margin-bottom: 1rem;
+	width: 100%;
+	font-weight: bold;
+}
+
+
+.add {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	gap: 1rem;
+	
+}
+.add input {
+	border: 1px solid black;
+}
+.newproduct-btn, .newcategory-btn {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	background-color: var(--accent-color);
+	color: black;
+	padding: 1.4rem;
+	border-radius: 1rem;
+	font-size: 1rem;
+	font-weight: bold;
+	width: 12rem;
+	height: 2.5rem;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+
+.user-list {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.user-list ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.user-list li {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 10px;
+}
+
+.user-list p {
+	margin: 0;
+	font-size: 18px;
+}
+
+.user-list p:last-of-type {
+	font-size: 14px;	
+	margin-top: 5px;
+}
+.small-image {
+	width: 4rem;
+}

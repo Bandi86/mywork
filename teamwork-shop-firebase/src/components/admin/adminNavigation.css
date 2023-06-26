@@ -1,0 +1,44 @@
+.admin-navi {
+    display: flex;
+	align-items: center;
+	justify-content:space-between;
+	height: 7vh;
+	color: var(--main-color);
+	background-color: var(--first-color);
+    font-size: 18px;
+}
+
+.admin-navi a{
+color: black;
+}
+
+.admin-navi a:hover {
+    color: var(--accent-color);
+}
+
+.admin-navi .active {
+    color: var(--accent-color);
+}
+
+.admin-navi-left {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.admin-navi-centre {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.admin-navi-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-right: 1rem;
+    margin-top: 1vh;
+}
+
+.admin-navi-right a{
+    font-size: 18px;
+}
+

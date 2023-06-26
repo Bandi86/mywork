@@ -1,0 +1,31 @@
+.topbar {
+    background-color: var(--accent-color);
+    width: auto;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+
+.top-featured-link {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 2px 2px gray;
+    
+}
+.top-featured-link:hover {
+    font-size: 1rem;
+}
+
+#icon-double-right {
+    font-size: 1.1rem;
+    vertical-align: middle;
+    
+}
+#icon-double-right {
+    font-size: 1.2rem;
+        
+}

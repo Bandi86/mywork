@@ -1,0 +1,41 @@
+.filter-by-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-right: 1rem;
+}
+.filter-by-name2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-right: 1rem;
+}
+.filter-by-name input {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: black;
+    border: 1px solid black;
+}
+
+.filter-by-name button {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--accent-color);
+    cursor: pointer;
+    border: 1px solid black;
+    
+}
+
+.admin-filter-sorting {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.admin-filter-sorting select {
+    border-radius: 0.5rem;
+}

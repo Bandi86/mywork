@@ -1,0 +1,40 @@
+.bg-img img {
+    width: 100%;
+    position: relative;
+    margin: auto;
+    height: auto;
+    
+   /*max-width: 50vw;
+    max-height: 50vh;*/
+}
+
+.about-title {
+    position: absolute;
+    top: 52vmin;
+    left: 5rem;
+    color: var(--third-color);
+    /*font-size: 5rem;*/
+    font-weight:700;
+    text-shadow: rgb(148, 147, 147) 1px 0 1px;
+    font-size: 10vmin;
+    
+}
+
+.about-subtitle {
+    position: absolute;
+    top: 45vmin;
+    left: 5rem;
+    color: var(--third-color);
+    font-size: 4vmin;
+    font-weight:700;
+    /*letter-spacing: 0.15em;*/
+    text-shadow: rgb(134, 133, 133) 1px 0 1px;
+    
+}
+
+.parag{
+    
+    margin: 5rem;
+    margin-right: 10rem;
+    margin-left: 10rem;
+}

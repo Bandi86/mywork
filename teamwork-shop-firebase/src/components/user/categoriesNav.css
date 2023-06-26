@@ -1,0 +1,23 @@
+.cat-navi-container {
+    display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 5vh;
+	color: var(--main-color);
+	gap: 4rem;
+	border-bottom: 0.1rem white solid;
+    margin-left: 20rem;
+    margin-right: 20rem;
+    
+
+}
+
+.cat-navi-container p span {
+    color: #727272;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.cat-navi-container p span:hover {
+    color: var(--accent-color);
+    
+}

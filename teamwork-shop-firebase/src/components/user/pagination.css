@@ -1,0 +1,38 @@
+
+.page-turner {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 2rem;
+    font-size: 1.5rem;
+    align-items: center;
+}
+.page-turner .black {
+    color: black;
+    cursor: pointer;
+}
+.page-turner .grey {
+    color: grey;
+    cursor: default;
+}
+.page-turner button {
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    background-color: white;
+    cursor: pointer;
+}
+#current-button {
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    background-color: blue;
+    cursor: pointer;
+    color: white;
+}
+
+.current-page {
+    transform: scale(1.1);
+}
+
+.current-page:hover {
+    transform: scale(1.3);
+}

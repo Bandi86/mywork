@@ -1,0 +1,20 @@
+.layout-flex {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+    width: 100%;
+}
+
+.layout-flex Navigation {
+	height: 10%;
+}
+
+.layout-flex main {
+	height: 80%;
+}
+
+
+.layout-flex Footer {
+	height: 10%;
+
+}
