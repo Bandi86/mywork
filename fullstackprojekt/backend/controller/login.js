@@ -5,9 +5,9 @@ import db from "../create_db.js";
 
 export const sessions = {};
 
-function login(req, res) {
+function login(req, res) {  
   db.serialize(() => {
-    getUser(req.body.email, (err, row) => {      
+    getUser(req.body.email, (err, row) => {
       if (err) {
         console.error("Failed to get user:", err);
         res.status(500).json({ error: "Hiba történt a bejelentkezés során" });
@@ -27,14 +27,16 @@ function login(req, res) {
               } else {
                 if (isMatch) {
                   const sessionID = nanoid(8);
-                  const sessionData = { localId: row.id, email: row.email };
-                  sessions[sessionID] = sessionData;
+                  const sessionData = { localId: row.id, email: row.email, role: row.role, name: row.username };
+                  sessions[sessionID] = sessionData;                  
 
                   res.send({ ...sessionData, sessionID });
                   console.log(
                     "Sikeres bejelentkezés",
                     "user:",
                     row.username,
+                    "role",
+                    row.role,
                     "email:",
                     row.email,
                     "sessionID:",
@@ -51,4 +53,3 @@ function login(req, res) {
 }
 
 export default login;
-

@@ -4,7 +4,6 @@ import convertDate from '../../../services/timestamp'
 export default function RenderProducts() {
 
 const [allProducts, setAllProducts] = useState([]);
-console.log(allProducts);
 
 useEffect(() => {
     fetch('http://localhost:8000/admin/products')

@@ -9,6 +9,7 @@ export default function registerUser(req, res) {
   const role = "user";
   const saltRounds = 10;
 
+  // Dátum formázása
   function convertDate(timestamp) {
     if (timestamp) {
       const date = new Date(timestamp);

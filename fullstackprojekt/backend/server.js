@@ -29,6 +29,7 @@ app.use(cookieParser());
 app.use("/", authRouter);
 app.use("/admin", adminRouter);
 
+
 app.listen(PORT, () => {
   console.log(`Server is running at ${PORT}`);
 });

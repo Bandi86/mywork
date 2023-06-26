@@ -45,7 +45,7 @@ const AddProducts = () => {
         <form
           className="flex flex-col w-full mt-4 text-center items-center gap-6"
           onSubmit={handleSubmit}
-          onChange={handleChange}           
+          onChange={handleChange}                             
         >
           <label className="text-lg text-black text-center">Product Name</label>
           <input
@@ -53,6 +53,8 @@ const AddProducts = () => {
             type="text"
             name="productname"
             placeholder="Product Name"
+            value={productFormData.productname}
+            onChange={handleChange}
           />
           <label className="text-lg text-black text-center">
             Product Description
@@ -62,6 +64,8 @@ const AddProducts = () => {
             type="text"
             name="productdescription"
             placeholder="Product Description"
+            value={productFormData.productdescription}
+            onChange={handleChange}
           />
           <label className="text-lg text-black text-center">
             Product Price
@@ -71,6 +75,8 @@ const AddProducts = () => {
             type="number"
             name="productprice"
             placeholder="Product Price"
+            value={productFormData.productprice}
+            onChange={handleChange}
           />
           <label className="text-lg text-black text-center">
             Product Image
@@ -80,6 +86,8 @@ const AddProducts = () => {
             type="text"
             name="productimage"
             placeholder="Product Image"
+            value={productFormData.productimage}
+            onChange={handleChange}
           />
           <label className="text-lg text-black text-center">
             Product Category
@@ -87,6 +95,8 @@ const AddProducts = () => {
           <select
             className="text-lg text-black text-left pl-2 border-2 border-black rounded-md"
             name="productcategory"
+            value={productFormData.productcategory}
+            onChange={handleChange}
           >
             <option value="" disabled selected>
               Select Category
@@ -105,6 +115,8 @@ const AddProducts = () => {
             type="number"
             name="productstock"
             placeholder="Product Stock"
+            value={productFormData.productstock}
+            onChange={handleChange}
           />
           <button
             type="submit"
