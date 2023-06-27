@@ -22,11 +22,12 @@ import Index from "./pages/admin/index";
 import Layout from "./components/Layout";
 import Home from "./pages/user/home";
 import ProfileDetails from "./components/user/ProfileDetails";
+import ProductsList from "./components/ProductsList";
+import EditProduct from "./components/admin/products/EditProduct";
 
 function App() {
   const [user, setUser] = useState([]);
   const [cookies, setCookie, clearCookie] = useCookies();
-  
 
   useEffect(() => {
     if (cookies.sessionID) {
@@ -66,8 +67,12 @@ function App() {
           element: <Login />,
         },
         { path: "/", element: <Home /> },
-        { path: "/profile/:localId", element: <Auth children={<ProfileDetails />}></Auth> },
-        { path: "/logout", element: <Auth children={<Logout />}></Auth> },
+        { path: "/products", element: <ProductsList /> },
+        {
+          path: "/profile/:localId",
+          element: <Auth children={<ProfileDetails />}></Auth>,
+        },
+        { path: "/logout", element: <Auth children={<Logout />}></Auth> },       
       ],
     },
     {
@@ -85,6 +90,10 @@ function App() {
         {
           path: "/admin/categories",
           element: <Auth children={<AdminCategories />}></Auth>,
+        },       
+        {
+          path: "/admin/products/edit/:id",
+          element: <Auth children={<EditProduct />}></Auth>,
         },
       ],
     },

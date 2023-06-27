@@ -46,6 +46,9 @@ export default function Login() {
         setUser(resBody);
         setCookie("sessionID", resBody.sessionID);
         navigate("/"); // Átirányítás az alapoldalra
+        if (resBody.role === "admin") {
+          navigate("/admin");
+        }
       })
       .catch((err) => {
         console.log(err);

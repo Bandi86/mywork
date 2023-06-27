@@ -9,8 +9,7 @@ export default function getProducts(req, res) {
           console.log("error", err);
           res.status(500).json({ message: "Error getting products" });
           return;
-        } else {
-          console.log("products", rows);
+        } else {          
           res.status(200).json( rows );
         }
       }

@@ -1,7 +1,8 @@
 import db from "../../create_db.js";
 
 export default function updateProduct(req, res) {
-  const { id, name, price, description, image, category } = req.body;
+  const {name, price, description, image, category } = req.body;
+  const id = req.params.id;
 
   if (!id || !name || !price || !description || !image || !category) {
     return res.status(400).json({ message: "Missing required information" });
@@ -48,22 +49,7 @@ export default function updateProduct(req, res) {
           res.status(500).json({ message: "Error updating product" });
           return;
         }
-        res.status(200).json({ message: "Product updated" });
-        console.log(
-          "Product updated",
-          "id",
-          productId,
-          "name",
-          name,
-          "price",
-          price,
-          "description",
-          description,
-          "image",
-          image,
-          "category",
-          category
-        );
+        res.status(200).json({ message: "Product updated" });       
       }
     );
     stmt.finalize();

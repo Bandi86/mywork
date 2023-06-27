@@ -90,6 +90,7 @@ export default function Register() {
 										type='text'
 										name='text'
 										autoComplete='name'
+										id='name'
 										required
 										value={username}
 										onChange={(e) => setUserName(e.target.value)}
@@ -108,6 +109,7 @@ export default function Register() {
 									<input
 										type='email'
 										name='email'
+										id='email'
 										autoComplete='email'
 										required
 										value={email}
@@ -127,6 +129,7 @@ export default function Register() {
 									<input
 										type={visible ? 'text' : 'password'}
 										name='password'
+										id='password'
 										autoComplete='current-password'
 										required
 										value={password}

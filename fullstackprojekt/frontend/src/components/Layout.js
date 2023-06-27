@@ -8,7 +8,7 @@ export default function Layout (){
     return (
             <div className='flex flex-col'>
                 <Navbar />
-                <main>
+                <main className='h-screen'>
                     <Outlet />
                 </main>
                 <Footer />

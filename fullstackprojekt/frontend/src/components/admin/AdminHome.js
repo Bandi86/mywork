@@ -7,7 +7,7 @@ export default function AdminHome() {
 
   return (
    <>
-   {user.name}
+   <p className='text-center text-5xl mt-10'> Hello {user.name}</p>
    </> 
   )
 }
