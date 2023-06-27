@@ -1,7 +1,7 @@
-import React from 'react'
+import ProfileDetails from "../../components/user/ProfileDetails";
 
 export default function profile() {
-  return (
-    <div>profile</div>
-  )
+  return <div>    
+    <ProfileDetails />
+  </div>;
 }

@@ -4,7 +4,6 @@ import { useCookies } from "react-cookie";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
-
 // Components
 
 // Auth
@@ -21,13 +20,13 @@ import Index from "./pages/admin/index";
 
 // User
 import Layout from "./components/Layout";
-import Profile from "./pages/user/profile";
-
-// Pages
+import Home from "./pages/user/home";
+import ProfileDetails from "./components/user/ProfileDetails";
 
 function App() {
   const [user, setUser] = useState([]);
-  const [cookies, setCookie, clearCookie] = useCookies();  
+  const [cookies, setCookie, clearCookie] = useCookies();
+  
 
   useEffect(() => {
     if (cookies.sessionID) {
@@ -66,13 +65,14 @@ function App() {
           path: "/login",
           element: <Login />,
         },
-        { path: "/profile", element: <Auth children={<Profile />}></Auth> },
-        { path: "/logout", element: <Auth children={<Logout />}></Auth> },        
+        { path: "/", element: <Home /> },
+        { path: "/profile/:localId", element: <Auth children={<ProfileDetails />}></Auth> },
+        { path: "/logout", element: <Auth children={<Logout />}></Auth> },
       ],
     },
     {
       path: "/admin",
-      element: <AdminLayout />,
+      element: <Auth children={<AdminLayout />}></Auth>,
       children: [
         {
           path: "/admin",

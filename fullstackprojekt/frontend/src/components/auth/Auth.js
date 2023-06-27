@@ -1,25 +1,17 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { useCookies } from "react-cookie";
+
+import { useNavigate } from "react-router-dom";
 
 export default function Auth(props) {
+  const navigate = useNavigate();
   const [user] = useContext(UserContext);
-  const [cookies, setCookie, clearCookie] = useCookies();
-  console.log(user);
 
-  // useEffect(() => {
-  // if (cookies.sessionID) {
-  //   if (user.role === "admin") {
-  //     return <Navigate to="/admin" />;
-  //   } else {
-  //     return <Navigate to="/" />;
-  //   }
-  // } else {
-  //   clearCookie("sessionID");
-  // }
-  // }, [user]);
+  useEffect(() => {
+    if (user.role === "admin") {
+      navigate("/admin");
+    }
+  }, [user, navigate]);
 
-  // if (!user.email) return <Navigate to="/login" />;
-  // return props.children;
   return props.children;
 }

@@ -14,9 +14,7 @@ export default function Login() {
 
   const [cookies, setCookie] = useCookies("user");
   const [user, setUser] = useContext(UserContext);
-  const navigate = useNavigate();  
-  
-  //console.log(user);
+  const navigate = useNavigate();   
   
 
   const handleChange = (e) => {
@@ -27,14 +25,14 @@ export default function Login() {
     }
   }
 
-  const handleSubmit = (e) => {  
-    e.preventDefault();   
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const loginData = {
       email,
       password,
     };
-    
-    if (!cookies.sessionID) {
+
     fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {
@@ -42,22 +40,16 @@ export default function Login() {
       },
       body: JSON.stringify(loginData),
     })
-    .then((resp) => resp.json())
-    .then((resBody) => {
-      console.log(resBody);           
-      alert("Login successful")
-      setUser(resBody);        
-      setCookie("sessionID", resBody.sessionID);
-      if (resBody.role === "admin") {
-        navigate("/admin")      
-
-      } else {
-        navigate("/")
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
+      .then((resp) => resp.json())
+      .then((resBody) => {
+        alert("Login successful");
+        setUser(resBody);
+        setCookie("sessionID", resBody.sessionID);
+        navigate("/"); // Átirányítás az alapoldalra
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

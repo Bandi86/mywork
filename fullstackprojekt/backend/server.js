@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRouter from "./routes/auth.js";
 import adminRouter from "./routes/admin.js";
+import userRouter from "./routes/user.js";
 
 const app = express();
 const PORT = 8000;
@@ -28,6 +29,7 @@ app.use(cookieParser());
 // authRouter és adminRouter használata
 app.use("/", authRouter);
 app.use("/admin", adminRouter);
+app.use("/profile/:localId", userRouter);
 
 
 app.listen(PORT, () => {
