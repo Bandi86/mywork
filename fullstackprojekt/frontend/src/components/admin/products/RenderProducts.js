@@ -11,7 +11,28 @@ export default function RenderProducts() {
       .then((res) => res.json())
       .then((data) => setAllProducts(data))
       .catch((error) => console.error("Failed to fetch products:", error));
-  }, [setAllProducts]);
+  }, [allProducts]);
+
+  const handleDelete = (productId) => {
+    fetch(`http://localhost:8000/admin/products/delete/${productId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ isDeleted: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          alert("Product deleted successfully");
+          navigate("/admin/products");
+        } else {
+          alert("Product delete failed");
+        }
+      })
+      .catch((error) => console.error("Failed to delete product:", error));
+  }; 
+  
 
   return (
     <div className="flex flex-col w-full mt-4 text-center items-center gap-10">
@@ -47,7 +68,7 @@ export default function RenderProducts() {
               >
                 Edit
               </td>
-              <td className="p-2 font-bold cursor-pointer">Delete</td>
+              <td onClick={() => handleDelete(product.id)} className="p-2 font-bold cursor-pointer">Delete</td>
             </tr>
           ))}
         </tbody>

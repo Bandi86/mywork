@@ -15,6 +15,7 @@ import Logout from "./components/auth/Logout";
 // Admin
 import AdminLayout from "./components/admin/Layout";
 import AdminProducts from "./components/admin/products/AdminProducts";
+import AddProducts from "./components/admin/products/AddProducts";
 import AdminCategories from "./components/admin/categories/AdminCategories";
 import Index from "./pages/admin/index";
 
@@ -46,12 +47,11 @@ function App() {
             clearCookie("sessionID");
           }
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((error) => {                    
           clearCookie("sessionID");
         });
     }
-  }, []);
+  }, [cookies.sessionID, clearCookie]);
 
   const router = createBrowserRouter([
     {
@@ -72,7 +72,7 @@ function App() {
           path: "/profile/:localId",
           element: <Auth children={<ProfileDetails />}></Auth>,
         },
-        { path: "/logout", element: <Auth children={<Logout />}></Auth> },       
+        { path: "/logout", element: <Auth children={<Logout />}></Auth> },
       ],
     },
     {
@@ -88,18 +88,20 @@ function App() {
           element: <Auth children={<AdminProducts />}></Auth>,
         },
         {
+          path: "/admin/products/add",
+          element: <Auth children={<AddProducts />}></Auth>,
+        },
+        {
           path: "/admin/categories",
           element: <Auth children={<AdminCategories />}></Auth>,
-        },       
+        },
         {
           path: "/admin/products/edit/:id",
           element: <Auth children={<EditProduct />}></Auth>,
         },
       ],
     },
-  ]);
-
-  // const router = createBrowserRouter(routes);
+  ]);  
 
   return (
     <>

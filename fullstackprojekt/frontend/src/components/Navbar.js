@@ -10,6 +10,7 @@ import { UserContext } from "../contexts/UserContext";
 export default function Navbar() {
   const [cookies, setCookie] = useCookies(["sessionID"]);
   const [user] = useContext(UserContext);
+  
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -58,8 +59,8 @@ export default function Navbar() {
             } absolute z-10 left-0 top-full mt-2 bg-white text-gray-700 rounded shadow`}
           >
             <ul className="py-2">
-              {user.email && (
-                <Link to="/profile/:localId">
+              {user.email && user.localId && (
+                <Link to={`/profile/${user.localId}`}>
                   <li className="text-[17px] py-1 px-4 hover:bg-blue-500">
                     Profile
                   </li>

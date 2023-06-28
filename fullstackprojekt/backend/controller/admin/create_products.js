@@ -42,11 +42,11 @@ export default function createProducts(req, res) {
         function (err) {
           if (err) {
             console.log("product creation error", err);
-            res.status(500).json({ message: "Error creating product" });
+            res.status(500).json({succes: false, message: "Error creating product" });
             return;
           } else {
             console.log("product created");
-            res.status(200).json({ message: "Product created" });
+            res.status(200).json({ succes: true, message: "Product created" });
           }
         }
       );

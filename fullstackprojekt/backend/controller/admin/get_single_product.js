@@ -4,7 +4,7 @@ export default function getSingleProduct(req, res) {
     const id = req.params.id;
     db.serialize(() => {
       db.get(
-        "SELECT * FROM products WHERE id = ?",
+        "SELECT * FROM products WHERE isDeleted = 0",
         id,
         function (err, row) {
           if (err) {

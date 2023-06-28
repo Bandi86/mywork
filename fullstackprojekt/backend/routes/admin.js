@@ -14,7 +14,7 @@ router.get("/products", getProducts);
 router.get("/products/:id", getSingleProduct)
 router.post("/create-products", createProducts);
 router.put("/products/edit/:id", updateProduct);
-router.post("/products/delete/:id", deleteProduct);
+router.put("/products/delete/:id", deleteProduct);
 
 // admin categories
 router.get("/categories", getCategories);

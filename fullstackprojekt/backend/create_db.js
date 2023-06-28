@@ -24,13 +24,22 @@ const db = new sqlite3.Database("./database.db", (err) => {
 db.serialize(() => {
   db.run(
     `CREATE TABLE IF NOT EXISTS user (
-      id INTEGER PRIMARY KEY,
-      email VARCHAR(32) UNIQUE NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      username TEXT,
-      role VARCHAR(32) NOT NULL,
+      id INT PRIMARY KEY,
+      username VARCHAR(32) UNIQUE NOT NULL,
+      email VARCHAR(64) UNIQUE NOT NULL,
+      password VARCHAR(64) NOT NULL,
+      role VARCHAR(16) NOT NULL,
+      isDeleted BOOLEAN DEFAULT false,
+      image_id INTEGER,
+      cart_id INTEGER,
+      order_id INTEGER,
+      favorites_id INTEGER,
       created_at TIMESTAMP,
-      updated_at TIMESTAMP
+      updated_at TIMESTAMP,
+      FOREIGN KEY (image_id) REFERENCES uploads(id),
+      FOREIGN KEY (cart_id) REFERENCES cart(id),
+      FOREIGN KEY (order_id) REFERENCES orders(id),
+      FOREIGN KEY (favorites_id) REFERENCES favorites(id)
     )`,
     (err) => {
       if (err) {
@@ -42,17 +51,39 @@ db.serialize(() => {
   );
 
   db.run(
+    `CREATE TABLE IF NOT EXISTS cart (
+      id INTEGER PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      product_id INTEGER NOT NULL,
+      quantity INTEGER NOT NULL,
+      created_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES user(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
+    )`,
+    (err) => {
+      if (err) {
+        console.log("cart table creation error", err);
+      } else {
+        console.log("cart table created");
+      }
+    }
+  );
+
+  db.run(
     `CREATE TABLE IF NOT EXISTS products (
-      id INT PRIMARY KEY,
-      category_id INT NOT NULL,
+      id INTEGER PRIMARY KEY,
+      category_id INTEGER NOT NULL,
       name VARCHAR(32) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
       description TEXT,
-      image TEXT,
+      image_id INTEGER,
       stock INTEGER NOT NULL,
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
-      FOREIGN KEY (category_id) REFERENCES category(id)
+      isDeleted BOOLEAN DEFAULT false,
+      FOREIGN KEY (category_id) REFERENCES category(id),
+      FOREIGN KEY (image_id) REFERENCES uploads(id)
     )`,
     (err) => {
       if (err) {
@@ -65,8 +96,9 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS category (
-      id INT PRIMARY KEY,
+      id INTEGER PRIMARY KEY,
       name VARCHAR(32) UNIQUE NOT NULL,
+      isDeleted BOOLEAN DEFAULT false,
       created_at TIMESTAMP,
       updated_at TIMESTAMP
     )`,
@@ -78,7 +110,68 @@ db.serialize(() => {
       }
     }
   );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS favorites (
+      id INTEGER PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      product_id INTEGER NOT NULL,
+      created_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES user(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
+    )`,
+    (err) => {
+      if (err) {
+        console.log("favorites table creation error", err);
+      } else {
+        console.log("favorites table created");
+      }
+    }
+  );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS orders (
+      id INTEGER PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      product_id INTEGER NOT NULL,
+      quantity INTEGER NOT NULL,
+      created_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      isDeleted BOOLEAN DEFAULT false,
+      FOREIGN KEY (user_id) REFERENCES user(id),
+      FOREIGN KEY (product_id) REFERENCES products(id)
+    )`,
+    (err) => {
+      if (err) {
+        console.log("orders table creation error", err);
+      } else {
+        console.log("orders table created");
+      }
+    }
+  );
+
+  db.run(
+    `CREATE TABLE IF NOT EXISTS uploads (
+      id INTEGER PRIMARY KEY,
+      filename TEXT,
+      product_image INTEGER DEFAULT 0,
+user_image INTEGER DEFAULT 0,
+
+      created_at TIMESTAMP,
+      updated_at TIMESTAMP,
+      isDeleted BOOLEAN DEFAULT false
+    )`,
+    (err) => {
+      if (err) {
+        console.log("uploads table creation error", err);
+      } else {
+        console.log("uploads table created");
+      }
+    }
+  );
 });
+
 
 
 // Felhasználó létrehozása az adatbázisban
@@ -115,7 +208,7 @@ export function createUser(
   );
 }
 
-// Felhasználó sessionID-jének frissítése
+// Felhasználó sessionID-jének frissítése ha szükséges
 export function updateUserSessionID(email, sessionID, callback) {
   db.run(
     "UPDATE user SET session_id = ? WHERE email = ?",

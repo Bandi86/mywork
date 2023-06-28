@@ -7,13 +7,18 @@ export default function Auth(props) {
   const navigate = useNavigate();
   const [user] = useContext(UserContext);
 
- /*  useEffect(() => {
-    if (user.role === "admin") {
-      navigate("/admin");
-    } else {
-      navigate("/");
+  useEffect(() => {
+    if (window.location.pathname.includes("admin")) {
+      if (user.role !== "admin") {
+        navigate("/");
+      }
     }
-  }, []); */
+    if (window.location.pathname.includes("profile")) {
+      if (!user.localId) {
+        navigate("/");
+      }
+    }    
+  }, [navigate]);
 
   return props.children;
 }

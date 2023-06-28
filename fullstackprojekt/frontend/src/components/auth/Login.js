@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState, useContext } from 'react'
+import React from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,7 @@ export default function Login() {
 
   const [cookies, setCookie] = useCookies("user");
   const [user, setUser] = useContext(UserContext);
-  const navigate = useNavigate();   
-  
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === "email") {
@@ -23,16 +22,16 @@ export default function Login() {
     } else if (e.target.name === "password") {
       setPassword(e.target.value);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     const loginData = {
       email,
       password,
     };
-
+  
     fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {
@@ -42,18 +41,25 @@ export default function Login() {
     })
       .then((resp) => resp.json())
       .then((resBody) => {
-        alert("Login successful");
-        setUser(resBody);
-        setCookie("sessionID", resBody.sessionID);
-        navigate("/"); // Átirányítás az alapoldalra
-        if (resBody.role === "admin") {
-          navigate("/admin");
+        if (resBody.error) {
+          alert(resBody.error);
+        } else if (resBody.success === true) {
+          alert("Login successful");
+          setUser(resBody);
+          setCookie("sessionID", resBody.sessionID);
+          navigate("/");
+          if (resBody.role === "admin") {
+            navigate("/admin");
+          }
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
+  
+  
 
   return (
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -79,7 +85,6 @@ export default function Login() {
                     required
                     value={email}
                     onChange={handleChange}
-                   
                     className="apperance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                 </div>
@@ -99,7 +104,6 @@ export default function Login() {
                     required
                     value={password}
                     onChange={handleChange}
-                    
                     className="apperance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                   {visible ? (
@@ -142,8 +146,8 @@ export default function Login() {
               </div>
               <div>
                 <button
-                  type="submit"                  
-                  className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-med rounded-md text-white bg-blue-600 hover:bg-blue-700"                  
+                  type="submit"
+                  className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-med rounded-md text-white bg-blue-600 hover:bg-blue-700"
                 >
                   Submit
                 </button>

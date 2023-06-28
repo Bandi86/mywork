@@ -1,55 +1,54 @@
 import bcrypt from "bcrypt";
 import { nanoid } from "nanoid";
 import { getUser } from "../create_db.js";
-import db from "../create_db.js";
 
 export const sessions = {};
 
-function login(req, res) {  
-  db.serialize(() => {
-    getUser(req.body.email, (err, row) => {
-      if (err) {
-        console.error("Failed to get user:", err);
-        res.status(500).json({ error: "Hiba történt a bejelentkezés során" });
-      } else {
-        if (row.email) {
-          const hashedPassword = row.password;
+function login(req, res) {
+  if (!req.body) {
+    return res.status(400).json({ error: "No request body" });
+  }
 
-          bcrypt.compare(
-            req.body.password,
-            hashedPassword,
-            (compareErr, isMatch) => {
-              if (compareErr) {
-                console.log("login error", compareErr);
-                res
-                  .status(500)
-                  .json({ error: "Hiba történt a bejelentkezés során" });
-              } else {
-                if (isMatch) {
-                  const sessionID = nanoid(8);
-                  const sessionData = { localId: row.id, email: row.email, role: row.role, name: row.username };
-                  sessions[sessionID] = sessionData;                  
+  const { email, password } = req.body;
 
-                  res.send({ ...sessionData, sessionID });
-                  console.log(
-                    "Sikeres bejelentkezés",
-                    "user:",
-                    row.username,
-                    "role",
-                    row.role,
-                    "email:",
-                    row.email,
-                    "sessionID:",
-                    sessionID
-                  );
-                }
-              }
-            }
-          );
-        }
+  getUser(email, (err, user) => {
+    if (err) {
+      console.error("Failed to get user:", err);
+      return res.status(500).json({ error: "Error during login" });
+    }
+
+    if (!user) {
+      return res.status(401).json({ error: "No registered users found" });
+    }
+
+    const { id, password: hashedPassword, username, role } = user;
+
+    bcrypt.compare(password, hashedPassword, (compareErr, isMatch) => {
+      if (compareErr) {
+        console.error("Login error:", compareErr);
+        return res.status(500).json({ error: "Error during login" });
       }
+
+      if (!isMatch) {
+        return res.status(401).json({ error: "Invalid email or password" });
+      }
+
+      const sessionID = nanoid();
+      const sessionData = { localId: id, email, role, name: username };
+      sessions[sessionID] = sessionData;
+
+      console.log(
+        "Successful login",
+        "user:", username,
+        "role:", role,
+        "email:", email,
+        "sessionID:", sessionID
+      );
+
+      res.json({ success: true, ...sessionData, sessionID });
     });
   });
 }
 
 export default login;
+
