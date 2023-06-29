@@ -11,7 +11,7 @@ export default function RenderProducts() {
       .then((res) => res.json())
       .then((data) => setAllProducts(data))
       .catch((error) => console.error("Failed to fetch products:", error));
-  }, [allProducts]);
+  }, [setAllProducts]);
 
   const handleDelete = (productId) => {
     fetch(`http://localhost:8000/admin/products/delete/${productId}`, {

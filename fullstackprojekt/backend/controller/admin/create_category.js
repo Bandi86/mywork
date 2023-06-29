@@ -1,10 +1,10 @@
 import { nanoid } from "nanoid";
 import db from "../../create_db.js";
 
-export default function createCategory(req, res) {
-  console.log(req.body);
-  const { categoryName } = req.body;
-  const id = nanoid(10);
+export default function createCategory(req, res) {  
+ 
+  const categoryName  = req.body.categoryName;  
+  const id = nanoid();
   const created_at = Date.now();
   
 

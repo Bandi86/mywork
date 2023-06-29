@@ -11,24 +11,25 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(true);
-  const [avatar, setAvatar] = useState(null);  
+  const [avatar, setAvatar] = useState(null);
+  
 
   const handleFileInputChange = (e) => {
-    const file = e.currentTarget.files[0];
+    const file = e.target.files[0];
     setAvatar(file);
   };
 
-  const handleSubmit = async (e) => {
+  /* const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const registrationData = {
       username: username,
       email: email,
       password: password,
     };
-  
+
     const passwordLength = password.length;
-  
+
     if (passwordLength < 6) {
       alert("Password needs to be 6 characters or longer");
       return;
@@ -42,7 +43,7 @@ export default function Register() {
       alert("email must include .");
       return;
     }
-  
+
     try {
       // Regisztrációs adatok küldése a register végpontra
       const response = await fetch("http://localhost:8000/register", {
@@ -52,17 +53,16 @@ export default function Register() {
         },
         body: JSON.stringify(registrationData),
       });
-  
+
       const resBody = await response.json();
-  
+
       if (resBody.success === true) {
         alert("Registration successful");
         navigate("/login");
-  
-        // Képfeltöltés külön lépésként
+
+         // Képfeltöltés külön lépésként
         const formDataImage = new FormData();
-        formDataImage.append("avatar", avatar);
-  
+        formDataImage.append("file", avatar);       
         const uploadResponse = await fetch(
           "http://localhost:8000/upload/user",
           {
@@ -70,14 +70,45 @@ export default function Register() {
             body: formDataImage,
           }
         );
-  
+
         const uploadResBody = await uploadResponse.json();
-  
+
         if (uploadResBody.success === true) {
-          console.log("File uploaded successfully!");
+          console.log("File uploaded successfully!"); 
         } else {
           alert(uploadResBody.message);
         }
+      } else {
+        alert(resBody.message);
+      } 
+    } catch (error) {
+      console.log(error);
+    } 
+  };  */
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const registrationData = {
+      username: username,
+      email: email,
+      password: password,
+    }
+    const formData = new FormData();
+    formData.append("registrationData", JSON.stringify(registrationData))
+    formData.append("file", avatar);
+    
+
+    try {      
+      const response = await fetch("http://localhost:8000/register", {
+        method: "POST",
+        body: formData,
+      });
+
+      const resBody = await response.json();
+
+      if (resBody.success === true) {
+        alert("Registration successful");
+        navigate("/login");
       } else {
         alert(resBody.message);
       }
@@ -85,7 +116,6 @@ export default function Register() {
       console.log(error);
     }
   };
-  
 
   return (
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -95,7 +125,10 @@ export default function Register() {
         </h2>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form
+              className="space-y-6"
+              onSubmit={handleSubmit}             
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -173,8 +206,9 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="avatar"
-                  className="block text-sm font-medium text-gray-700"
-                ></label>
+                  className="block text-sm font-medium text-gray-700">
+
+                  </label>
                 <div className="mt-2 flex items-center">
                   <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
                     {avatar ? (
@@ -194,7 +228,7 @@ export default function Register() {
                     <span className="cursor-pointer">Upload File</span>
                     <input
                       id="file-input"
-                      name="avatar"
+                      name="file"
                       type="file"
                       accept=".jpg,.jpeg,.png"
                       className="sr-only"

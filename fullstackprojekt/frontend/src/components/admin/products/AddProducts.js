@@ -99,7 +99,7 @@ const AddProducts = () => {
         <input
           className="text-lg text-black text-left pl-2 border-2 border-black placeholder:gray-400 rounded-md"
           type="file" 
-          name="productimage"
+          name="file"
           onChange={handleFileChange} 
         />
         <label className="text-lg text-black text-center">

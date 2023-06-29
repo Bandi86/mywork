@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import convertDate from "../../../services//timestamp"
+import convertDate from "../../../services//timestamp";
 
 export default function AddCategories() {
   const [categoryName, setCategoryName] = useState("");
   const [allcat, setAllcat] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/admin/categories')
-      .then(res => res.json())
-      .then(data => setAllcat(data))
-      .catch(error => console.error('Failed to fetch categories:', error));
-  }, [allcat]);
+    fetch("http://localhost:8000/admin/categories")
+      .then((res) => res.json())
+      .then((data) => setAllcat(data))
+      .catch((error) => console.error("Failed to fetch categories:", error));
+  }, [setAllcat]);
+
+  
 
   function handleChange(e) {
     setCategoryName(e.target.value);
@@ -18,15 +20,21 @@ export default function AddCategories() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("categoryName", categoryName);
     fetch("http://localhost:8000/admin/create-category", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ categoryName }),
+      method: "POST",      
+      body: formData,
     })
       .then((res) => res.json())
-      .catch(error => console.error('Failed to add category:', error));
+      .then((data) => {
+        if (data.success) {
+          alert(data.message);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((error) => console.error("Failed to add category:", error));
   }
 
   return (
@@ -42,6 +50,7 @@ export default function AddCategories() {
           name="categoryName"
           id="categoryName"
           placeholder="Category Name"
+          onChange={handleChange}
         />
         <button
           className="p-2 mt-2 text-lg ml-4 text-white bg-black rounded-md"
@@ -50,34 +59,31 @@ export default function AddCategories() {
           Add Category
         </button>
       </form>
-      
-        <table className="table-fixed">
-          <thead>
-            <tr className="tr">
-              <th className="p-2">Category Name</th>
-              <th className="p-2">Category ID</th>
-              <th className="p-2">Created AT</th>
-              <th className="p-2">Updated AT</th>
-              <th className="p-2">Edit</th>
-              <th className="p-2">Delete</th>
+
+      <table className="table-fixed">
+        <thead>
+          <tr className="tr">
+            <th className="p-2">Category Name</th>
+            <th className="p-2">Category ID</th>
+            <th className="p-2">Created AT</th>
+            <th className="p-2">Updated AT</th>
+            <th className="p-2">Edit</th>
+            <th className="p-2">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allcat.map((cat) => (
+            <tr key={cat.id}>
+              <td className="p-2">{cat.name}</td>
+              <td className="p-2">{cat.id}</td>
+              <td className="p-2">{convertDate(cat.created_at)}</td>
+              <td className="p-2">{convertDate(cat.updated_at)}</td>
+              <td className="p-2 font-bold cursor-pointer">Edit</td>
+              <td className="p-2 font-bold cursor-pointer">Delete</td>
             </tr>
-          </thead>
-          <tbody>
-            {allcat.map((cat) => (
-              <tr key={cat.id}>
-                <td className="p-2">{cat.name}</td>
-                <td className="p-2">{cat.id}</td>
-                <td className="p-2">{convertDate(cat.created_at)}</td>
-                <td className="p-2">{convertDate(cat.updated_at)}</td>
-                <td className="p-2 font-bold cursor-pointer">Edit</td>
-                <td className="p-2 font-bold cursor-pointer">Delete</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-              
+          ))}
+        </tbody>
+      </table>
     </div>
-  );  
+  );
 }
-
-

@@ -1,19 +1,26 @@
 import { nanoid } from "nanoid";
 import { hash } from "bcrypt";
 import db from "../create_db.js";
+import { userImageUploadFunction } from "../middleware/multer.js";
 
 export default async function registerUser(req, res) {
-  
   if (!req.body) {
-    res.status(400).json({ success: false, message: "No request body" });
-    return;
+    return res.status(400).json({ success: false, message: "No request body" });
   }
 
-  const { username, email, password } = req.body;
+  // Felhasználói regisztrációs adatok
+  const registrationData = JSON.parse(req.body.registrationData);
+  const { username, email, password } = registrationData;
+
+  let role = "";
+  if (email === "susutechno@gmail.com") {
+    role = "admin";
+  } else {
+    role = "user";
+  }
 
   const id = nanoid();
   const created_at = Date.now();
-  const role = "user";
   const saltRounds = 10;
 
   // Dátum formázása
@@ -28,52 +35,45 @@ export default async function registerUser(req, res) {
 
   // Ellenőrzés, hogy a mezők ki vannak-e töltve
   if (!email || !password || !username) {
-    res.status(400).json({ success: false, message: "fill in all fields" });
-    return;
+    return res.status(400).json({ success: false, message: "fill in all fields" });
   }
 
   // input validation
   if (password.length < 6) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "Password needs to be 6 characters or longer",
     });
-    return;
   } else if (username.length < 3) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "name must be at least 3 characters long",
     });
-    return;
   } else if (!email.includes("@")) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "email must include @",
     });
-    return;
   } else if (!email.includes(".")) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
       message: "email must include .",
     });
-    return;
   }
 
   try {
     const existingUser = await getUserByEmail(email);
     if (existingUser) {
-      res.status(409).json({
+      return res.status(409).json({
         success: false,
         message: "email cannot be used because it's already in use",
       });
-      return;
     }
 
     const hashedPassword = await hashPassword(password, saltRounds);
 
     await createUser(id, username, email, hashedPassword, role, created_at);
 
-    res.status(200).json({ success: true, message: "User created" });
     console.log(
       "Felhasználó létrehozva",
       "Felhasználónév",
@@ -85,10 +85,14 @@ export default async function registerUser(req, res) {
       "Idő",
       convertDate(created_at)
     );
+
+    userImageUploadFunction(req, res, id);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Registration Failed" });
+    return res.status(500).json({ success: false, message: "Registration Failed" });
   }
+
+  return res.status(200).json({ success: true, message: "User created" });
 }
 
 function getUserByEmail(email) {
@@ -132,4 +136,3 @@ function createUser(id, username, email, hashedPassword, role, created_at) {
     });
   });
 }
-

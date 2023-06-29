@@ -6,13 +6,14 @@ import updateProduct from "../controller/admin/update_product.js";
 import createCategory from "../controller/admin/create_category.js";
 import getCategories from "../controller/admin/get_categories.js";
 import getSingleProduct from "../controller/admin/get_single_product.js";
+import { productImageUpload } from "../middleware/multer.js";
 
 const router = express.Router();
 
 // admin products
 router.get("/products", getProducts);
 router.get("/products/:id", getSingleProduct)
-router.post("/create-products", createProducts);
+router.post("/create-products",productImageUpload.single('file'), createProducts);
 router.put("/products/edit/:id", updateProduct);
 router.put("/products/delete/:id", deleteProduct);
 

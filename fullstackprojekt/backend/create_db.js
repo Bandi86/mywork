@@ -52,7 +52,7 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS cart (
-      id INTEGER PRIMARY KEY,
+      id INT PRIMARY KEY,
       user_id INTEGER NOT NULL,
       product_id INTEGER NOT NULL,
       quantity INTEGER NOT NULL,
@@ -72,12 +72,12 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS products (
-      id INTEGER PRIMARY KEY,
-      category_id INTEGER NOT NULL,
+      id INT PRIMARY KEY,
+      category_id INT NOT NULL,
       name VARCHAR(32) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
       description TEXT,
-      image_id INTEGER,
+      image_id INT,
       stock INTEGER NOT NULL,
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
@@ -96,7 +96,7 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS category (
-      id INTEGER PRIMARY KEY,
+      id INT PRIMARY KEY,
       name VARCHAR(32) UNIQUE NOT NULL,
       isDeleted BOOLEAN DEFAULT false,
       created_at TIMESTAMP,
@@ -113,7 +113,7 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS favorites (
-      id INTEGER PRIMARY KEY,
+      id INT PRIMARY KEY,
       user_id INTEGER NOT NULL,
       product_id INTEGER NOT NULL,
       created_at TIMESTAMP,
@@ -132,7 +132,7 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS orders (
-      id INTEGER PRIMARY KEY,
+      id INT PRIMARY KEY,
       user_id INTEGER NOT NULL,
       product_id INTEGER NOT NULL,
       quantity INTEGER NOT NULL,
@@ -153,10 +153,11 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS uploads (
-      id INTEGER PRIMARY KEY,
+      id INT PRIMARY KEY,
       filename TEXT,
+      path TEXT,
       product_image INTEGER DEFAULT 0,
-user_image INTEGER DEFAULT 0,
+      user_image INTEGER DEFAULT 0,
 
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
@@ -171,8 +172,6 @@ user_image INTEGER DEFAULT 0,
     }
   );
 });
-
-
 
 // Felhasználó létrehozása az adatbázisban
 export function createUser(
