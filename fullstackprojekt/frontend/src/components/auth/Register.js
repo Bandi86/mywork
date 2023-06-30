@@ -12,79 +12,11 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(true);
   const [avatar, setAvatar] = useState(null);
-  
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
   };
-
-  /* const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const registrationData = {
-      username: username,
-      email: email,
-      password: password,
-    };
-
-    const passwordLength = password.length;
-
-    if (passwordLength < 6) {
-      alert("Password needs to be 6 characters or longer");
-      return;
-    } else if (username.length < 3) {
-      alert("name must be at least 3 characters long");
-      return;
-    } else if (!email.includes("@")) {
-      alert("email must include @");
-      return;
-    } else if (!email.includes(".")) {
-      alert("email must include .");
-      return;
-    }
-
-    try {
-      // Regisztrációs adatok küldése a register végpontra
-      const response = await fetch("http://localhost:8000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registrationData),
-      });
-
-      const resBody = await response.json();
-
-      if (resBody.success === true) {
-        alert("Registration successful");
-        navigate("/login");
-
-         // Képfeltöltés külön lépésként
-        const formDataImage = new FormData();
-        formDataImage.append("file", avatar);       
-        const uploadResponse = await fetch(
-          "http://localhost:8000/upload/user",
-          {
-            method: "POST",
-            body: formDataImage,
-          }
-        );
-
-        const uploadResBody = await uploadResponse.json();
-
-        if (uploadResBody.success === true) {
-          console.log("File uploaded successfully!"); 
-        } else {
-          alert(uploadResBody.message);
-        }
-      } else {
-        alert(resBody.message);
-      } 
-    } catch (error) {
-      console.log(error);
-    } 
-  };  */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,13 +24,14 @@ export default function Register() {
       username: username,
       email: email,
       password: password,
-    }
+    };
     const formData = new FormData();
-    formData.append("registrationData", JSON.stringify(registrationData))
+    formData.append("username", registrationData.username);
+    formData.append("email", registrationData.email);
+    formData.append("password", registrationData.password);
     formData.append("file", avatar);
-    
 
-    try {      
+    try {
       const response = await fetch("http://localhost:8000/register", {
         method: "POST",
         body: formData,
@@ -125,10 +58,7 @@ export default function Register() {
         </h2>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form
-              className="space-y-6"
-              onSubmit={handleSubmit}             
-            >
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -206,9 +136,8 @@ export default function Register() {
               <div>
                 <label
                   htmlFor="avatar"
-                  className="block text-sm font-medium text-gray-700">
-
-                  </label>
+                  className="block text-sm font-medium text-gray-700"
+                ></label>
                 <div className="mt-2 flex items-center">
                   <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
                     {avatar ? (

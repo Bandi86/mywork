@@ -35,7 +35,9 @@ export default async function registerUser(req, res) {
 
   // Ellenőrzés, hogy a mezők ki vannak-e töltve
   if (!email || !password || !username) {
-    return res.status(400).json({ success: false, message: "fill in all fields" });
+    return res
+      .status(400)
+      .json({ success: false, message: "fill in all fields" });
   }
 
   // input validation
@@ -69,11 +71,13 @@ export default async function registerUser(req, res) {
         message: "email cannot be used because it's already in use",
       });
     }
-
+  
     const hashedPassword = await hashPassword(password, saltRounds);
-
-    await createUser(id, username, email, hashedPassword, role, created_at);
-
+  
+    await userImageUploadFunction(req, res, id); // Felhasználói kép feltöltése
+  
+    await createUser(id, username, email, hashedPassword, role, created_at); // Felhasználó létrehozása
+  
     console.log(
       "Felhasználó létrehozva",
       "Felhasználónév",
@@ -85,15 +89,13 @@ export default async function registerUser(req, res) {
       "Idő",
       convertDate(created_at)
     );
-
-    userImageUploadFunction(req, res, id);
+  
+    return res.status(200).json({ success: true, message: "User created" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ success: false, message: "Registration Failed" });
   }
-
-  return res.status(200).json({ success: true, message: "User created" });
-}
+  
 
 function getUserByEmail(email) {
   return new Promise((resolve, reject) => {
@@ -135,4 +137,5 @@ function createUser(id, username, email, hashedPassword, role, created_at) {
       stmt.finalize();
     });
   });
+}
 }

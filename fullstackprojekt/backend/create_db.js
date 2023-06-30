@@ -30,10 +30,10 @@ db.serialize(() => {
       password VARCHAR(64) NOT NULL,
       role VARCHAR(16) NOT NULL,
       isDeleted BOOLEAN DEFAULT false,
-      image_id INTEGER,
-      cart_id INTEGER,
-      order_id INTEGER,
-      favorites_id INTEGER,
+      image_id INT,
+      cart_id INT,
+      order_id INT,
+      favorites_id INT,
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
       FOREIGN KEY (image_id) REFERENCES uploads(id),
@@ -59,7 +59,7 @@ db.serialize(() => {
       created_at TIMESTAMP,
       updated_at TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES user(id),
-      FOREIGN KEY (product_id) REFERENCES products(id)
+      FOREIGN KEY (product_id) REFERENCES uploads(id)
     )`,
     (err) => {
       if (err) {
@@ -178,8 +178,7 @@ export function createUser(
   id,
   email,
   hashedPassword,
-  username,
-  sessionID,
+  username,  
   role,
   created_at,
   callback
@@ -193,8 +192,7 @@ export function createUser(
       $email: email,
       $password: hashedPassword,
       $username: username,
-      $role: role,
-      $sessionID: sessionID,
+      $role: role,     
       $created_at: created_at,
     },
     (err) => {

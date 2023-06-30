@@ -3,7 +3,8 @@ import db from "../../create_db.js";
 
 export default function createCategory(req, res) {  
  
-  const categoryName  = req.body.categoryName;  
+  const categoryName  = req.body.categoryName;
+   
   const id = nanoid();
   const created_at = Date.now();
   

@@ -12,19 +12,20 @@ export default function AddCategories() {
       .catch((error) => console.error("Failed to fetch categories:", error));
   }, [setAllcat]);
 
-  
-
   function handleChange(e) {
     setCategoryName(e.target.value);
   }
 
+ 
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("categoryName", categoryName);
     fetch("http://localhost:8000/admin/create-category", {
-      method: "POST",      
-      body: formData,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ categoryName }),
+      
     })
       .then((res) => res.json())
       .then((data) => {
