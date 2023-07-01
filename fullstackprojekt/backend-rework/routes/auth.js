@@ -1,6 +1,6 @@
 import express from "express";
 import { nanoid } from "nanoid";
-import { insertDBAvatar, multerAvatarUpload } from "../middleware/multer.js";
+import { insertDBAvatar, multerAvatarUpload } from "../controller/image_controller/createProfileAvatar.js";
 import verifySession from "../middleware/verify_session.js";
 import { addSession, getUser } from "../services/auth/login.js";
 import {
@@ -83,14 +83,7 @@ router.post(
         !emailTaken
       ) {
         insertDBAvatar(req, res);
-        createUser(
-          id,
-          username,
-          email,
-          hashedPassword,
-          role,          
-          created_at
-        )
+        createUser(id, username, email, hashedPassword, role, created_at)
           .then(() => {
             console.log(
               "Felhasználó létrehozva",
@@ -111,13 +104,11 @@ router.post(
           })
           .catch((error) => {
             console.error("Error during user creation:", error);
-            return res
-              .status(500)
-              .json({
-                success: false,
-                message: "Registration Failed",
-                error: error.message,
-              });
+            return res.status(500).json({
+              success: false,
+              message: "Registration Failed",
+              error: error.message,
+            });
           });
       } else {
         return res
@@ -126,13 +117,11 @@ router.post(
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      return res
-        .status(500)
-        .json({
-          success: false,
-          message: "Registration Failed",
-          error: error.message,
-        });
+      return res.status(500).json({
+        success: false,
+        message: "Registration Failed",
+        error: error.message,
+      });
     }
   }
 );
@@ -148,38 +137,69 @@ router.post("/login", (req, res) => {
       .json({ success: false, message: validation.message });
   }
 
+  const validationPassword = validatePassword(req.body.password);
+  if (!validationPassword.success) {
+    return res
+      .status(400)
+      .json({ success: false, message: validationPassword.message });
+  }
+
+  const validationEmail = validateEmail(req.body.email);
+  if (!validationEmail.success) {
+    return res
+      .status(400)
+      .json({ success: false, message: validationEmail.message });
+  }
+
   const { email, password } = req.body;
 
+  // Felhasználó lekérdezése az adatbázisból
   getUser(email, (err, user) => {
     if (err) {
       console.error("Failed to get user:", err);
       return res
         .status(500)
-        .json({ error: "Error during login", details: err.message });
+        .json({ success: false, error: "Error during login" });
     }
     if (!user) {
       return res
         .status(401)
-        .json({ error: "No registered user found in database" });
+        .json({ success: false, error: "No registered user found in database" });
     }
 
     const { id, password: hashedPassword, username, role } = user;
-    comparePassword(password, hashedPassword, (compareErr, isMatch) => {
-      if (compareErr) {
-        console.error("Login error:", compareErr);
+    comparePassword(password, hashedPassword)
+      .then((isMatch) => {
+        if (!isMatch) {
+          return res.status(401).json({ success: false, error: "Invalid credentials" });
+        }
+
+        addSession(res, id, email, role, username)
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
         return res
           .status(500)
-          .json({ error: "Error during login", details: compareErr.message });
-      }
-      if (!isMatch) {
-        return res.status(401).json({ error: "Invalid email or password" });
-      }
-
-      addSession(res, id, email, role, username);
-    });
+          .json({ success: false, error: "Error during login" });
+      });
   });
 });
 
+
 router.post("/verify-session", verifySession);
+
+// Kijelentkezés útvonala
+router.get("/logout/:sessionID", (req, res) => {
+  const { sessionID } = req.params;
+  console.log("logoutUser", sessionID);
+
+  if (!sessionID) {
+    res.status(400).json({ success: false, message: "SessionID is missing" });
+    return;
+  } else {
+    delete sessions[sessionID];
+    res.status(200).json({ success: true, message: "Logout Done" });
+  }
+});
 
 export default router;

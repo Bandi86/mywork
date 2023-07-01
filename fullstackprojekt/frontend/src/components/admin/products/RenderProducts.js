@@ -7,14 +7,14 @@ export default function RenderProducts() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8000/admin/products")
+    fetch("http://localhost:8000/products")
       .then((res) => res.json())
       .then((data) => setAllProducts(data))
       .catch((error) => console.error("Failed to fetch products:", error));
   }, [setAllProducts]);
 
   const handleDelete = (productId) => {
-    fetch(`http://localhost:8000/admin/products/delete/${productId}`, {
+    fetch(`http://localhost:8000/products/delete/${productId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

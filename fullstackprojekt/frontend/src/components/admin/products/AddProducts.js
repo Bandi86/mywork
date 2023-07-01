@@ -36,12 +36,12 @@ const AddProducts = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
     formData.append("name", productFormData.productname);
     formData.append("description", productFormData.productdescription);
     formData.append("price", productFormData.productprice);
     formData.append("category", productFormData.productcategory);
     formData.append("stock", productFormData.productstock);
+    formData.append("file", selectedFile);
 
     fetch("http://localhost:8000/admin/create-products", {
       method: "POST",

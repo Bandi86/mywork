@@ -1,4 +1,6 @@
 import { nanoid } from "nanoid";
+import { database as db } from "../db/db_create_service.js";
+import {sessions } from "../../routes/auth.js";
 
 
 export function getUser(email, callback) {
@@ -13,10 +15,14 @@ export function getUser(email, callback) {
   });
 }
 
-export function addSession(res, id, email, role, username, sessions) {
+export function addSession(res, id, email, role, username) {  
   const sessionID = nanoid();
   const sessionData = { localId: id, email, role, name: username };
-  sessions[sessionID] = sessionData;
+  sessions[sessionID] = sessionData;  
 
+  if (!sessionID) {
+    res.status(400).json({ success: false, message: "SessionID is missing" });
+    return;
+  } else 
   res.json({ success: true, ...sessionData, sessionID });
 }

@@ -37,13 +37,13 @@ const userImageStorage = multer.diskStorage({
 export const productImageUpload = multer({ storage: productImageStorage });
 export const userImageUpload = multer({ storage: userImageStorage });
 
-/* export function uploadImage(req, res, productId) {
+ export function uploadImage(req, res, productId) {
   const uploadPath = `uploads/product_images/${categoryName}`;  
 
   fs.mkdirSync(uploadPath, { recursive: true });
 
   insertProductImageDB(res, fileNameWindows, productId);
-} */
+} 
 
 function insertProductImageDB(res, fileName) {
   const id = nanoid();
