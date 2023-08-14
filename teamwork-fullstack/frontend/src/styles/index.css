@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body {
+	margin: 0;	
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	
+
+	
+}
+
+a {
+	text-decoration: none;
+}
+
+.dashboardComp {
+	@apply h-[7rem] w-[23rem] bg-slate-200 border-2 border-black rounded-lg hover:bg-blue-500;
+   }
+   
+   .userMenuDiv {
+   @apply flex flex-col w-[8rem] items-center mt-2 mb-2;
+   }
+
+   .addProductForm {
+	@apply text-lg text-black text-left pl-2 border-2 focus:border-blue-600 
+   }
+
+   .Button {
+      @apply bg-second text-first font-bold px-4 py-2 rounded-md
+   } 
+
+   .fade-in {
+      opacity: 0;
+    }
+    .fade-in-active {
+      opacity: 1;
+      transition-property: opacity;
+      transition-duration: 1.5s;
+      transition-timing-function: ease-in-out;
+      transition-delay: 1500ms; /* Ezzel adunk meg 900 ms (0.9 másodperc) késleltetést */
+    }
+
+    @keyframes flash {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    .flashing-text {
+      animation: flash 1s infinite;
+    }
