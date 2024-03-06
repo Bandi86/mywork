@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom'
 import { nav } from '../../data'
 import { useEffect, useState } from 'react'
 import Auth from './Auth/Auth'
+import { useBlogContext } from '../../context/Context'
 
 const DemoHeader = () => {
   const [isActive, setIsActive] = useState(false)
   const [modal, setModal] = useState(false)
-  //const { authModel, setAuthModel } = Blog()
+  const { currentUser } = useBlogContext()
 
   useEffect(() => {
     const scrollMe = () => {
